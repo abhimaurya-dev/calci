@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calci">
+        <div class="output">
+          <textarea readonly disabled name="" id=""></textarea>
+          <span class="output-value">0</span>
+        </div>
+        <div class="grid">
+          <button id="clear" onclick="onClickHandler(this.id)">C</button>
+          <button id="cancel" onclick="onClickHandler(this.id)">
+            <i class="material-symbols-outlined back-btn-icon"> backspace </i>
+          </button>
+          <button id="^" onclick="onClickHandler(this.id)">^</button>
+          <button id="/" onclick="onClickHandler(this.id)">/</button>
+          <button id="7" onclick="onClickHandler(this.id)">7</button>
+          <button id="8" onclick="onClickHandler(this.id)">8</button>
+          <button id="9" onclick="onClickHandler(this.id)">9</button>
+          <button id="*" onclick="onClickHandler(this.id)">*</button>
+          <button id="4" onclick="onClickHandler(this.id)">4</button>
+          <button id="5" onclick="onClickHandler(this.id)">5</button>
+          <button id="6" onclick="onClickHandler(this.id)">6</button>
+          <button id="-" onclick="onClickHandler(this.id)">-</button>
+          <button id="1" onclick="onClickHandler(this.id)">1</button>
+          <button id="2" onclick="onClickHandler(this.id)">2</button>
+          <button id="3" onclick="onClickHandler(this.id)">3</button>
+          <button id="+" onclick="onClickHandler(this.id)">+</button>
+          <button>&nbsp;</button>
+          <button id="0" onclick="onClickHandler(this.id)">0</button>
+          <button id="." onclick="onClickHandler(this.id)">.</button>
+          <button id="=" onclick="onClickHandler(this.id)">=</button>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
