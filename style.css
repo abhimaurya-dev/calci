@@ -5,12 +5,26 @@
   overflow: hidden;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100vw;
+  font-size: 3.2rem;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+.header > p {
+  padding-bottom: 0.3rem;
+  border-bottom: 0.2rem solid;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 85vh;
   /* border: 0.2rem solid black; */
 }
 
