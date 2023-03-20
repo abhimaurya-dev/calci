@@ -152,6 +152,7 @@
 @media (max-width: 420px) {
   .container {
     height: 85vh;
+    margin-bottom: 3rem;
   }
 
   .output > textarea {
