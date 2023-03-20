@@ -25,6 +25,7 @@
   align-items: center;
   width: 100vw;
   height: 85vh;
+
   /* border: 0.2rem solid black; */
 }
 
@@ -112,4 +113,33 @@
 
 .grid > button:active {
   transform: scale(1.2);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 478px) {
+  .container {
+    margin: auto;
+    padding: 2rem;
+  }
+
+  .calci {
+    padding: 2rem;
+  }
+
+  .output > textarea {
+    width: 80%;
+  }
+
+  .output > span {
+    right: 5.5rem;
+  }
+
+  .output > span.exp {
+    right: 5.5rem;
+  }
+
+  .exp-valid {
+    right: 5.5rem;
+  }
 }
