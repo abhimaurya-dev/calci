@@ -50,6 +50,25 @@
   font-weight: 100;
 }
 
+.output > span.exp {
+  right: 1rem;
+  bottom: 3.5rem;
+}
+
+.exp-valid {
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.exp-notValid {
+  display: none;
+}
+
+.output-value {
+  font-size: 1rem;
+  color: #000000a9;
+}
+
 .grid {
   display: grid;
   grid-template-rows: repeat(5, 1fr);

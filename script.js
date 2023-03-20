@@ -1,18 +1,18 @@
 const calci = {
   "+": (num1, num2) => {
-    return num1 + num2;
+    return parseFloat(num1) + parseFloat(num2);
   },
   "-": (num1, num2) => {
-    return num1 - num2;
+    return parseFloat(num1) - parseFloat(num2);
   },
   "*": (num1, num2) => {
-    return num1 * num2;
+    return parseFloat(num1) * parseFloat(num2);
   },
   "/": (num1, num2) => {
-    return num1 / num2;
+    return parseFloat(num1) / parseFloat(num2);
   },
   "^": (num1, num2) => {
-    return num1 ** num2;
+    return parseFloat(num1) ** parseFloat(num2);
   },
 };
 
@@ -27,6 +27,7 @@ const associativityAndPrecedence = {
 };
 
 let outputValue = document.querySelector(".output-value");
+let expValue = document.querySelector(".exp");
 
 let result = 0;
 let exp = "";
@@ -34,6 +35,23 @@ let numberOfOperand = 0;
 let numberOfOperator = 0;
 let isPreviousOperator = true;
 let expression = [];
+
+const handleShowExp = () => {
+  if (exp.length > 0) {
+    // console.log(exp);
+    expValue.classList.remove("exp-notValid");
+    expValue.classList.add("exp-valid");
+    expValue.innerHTML = exp;
+    // outputValue.innerHTML =
+    // exp.length === 1 ? "= " + outputValue.innerHTML : outputValue.innerHTML;
+  } else {
+    try {
+      expValue.classList.remove("exp.valid");
+    } finally {
+      expValue.classList.add("exp-notValid");
+    }
+  }
+};
 
 const evaluatePostfix = (exp) => {
   let operand = [];
@@ -82,14 +100,6 @@ const infixToPostfix = (exp) => {
   return evaluatePostfix(postfixExp);
 };
 
-const showExpression = (exp) => {
-  console.log(exp);
-  let expressionString = "";
-  exp.forEach((e) => expressionString + e.toString());
-  console.log(expressionString);
-  return expressionString;
-};
-
 const onClickHandler = (e) => {
   if (e === "clear") {
     result = 0;
@@ -98,37 +108,47 @@ const onClickHandler = (e) => {
     numberOfOperand = 0;
     numberOfOperator = 0;
     isPreviousOperator = true;
-    outputValue.innerHTML = result;
-  } else if (e === "=") {
-    outputValue.innerHTML = result;
-  } else {
-    // if (e === "%") {
-    //   expression[expression.length - 1] /= 100;
-    //   console.log(expression);
-    //   result = infixToPostfix(expression);
-    // }
-    if (operators.includes(e) && isPreviousOperator === false) {
-      numberOfOperator++;
-      expression.push(parseFloat(exp));
-      exp = "";
-      expression.push(e);
-      isPreviousOperator = true;
-    } else if (!operators.includes(e) && isPreviousOperator === true) {
-      numberOfOperand++;
-      isPreviousOperator = false;
+    outputValue.innerHTML = 0;
+  } else if (e === "cancel") {
+    exp = exp.substring(0, exp.length - 1);
+    if (exp.length === 0) {
+      outputValue.innerHTML = 0;
     }
-    if (!operators.includes(e)) exp += e;
-    if (
-      numberOfOperand > numberOfOperator &&
-      numberOfOperand !== 0 &&
-      numberOfOperator !== 0
-    ) {
-      if (exp !== "") expression.push(parseFloat(exp));
+    if (operators.includes(expression[expression.length - 1])) {
+      expression.pop();
       result = infixToPostfix(expression);
-      if (exp !== "") expression.pop();
+      outputValue.innerHTML = exp.length >= 1 ? "= " + result : 0;
+    } else {
+      expression.pop();
     }
-    outputValue.innerHTML === "0"
-      ? (outputValue.innerHTML = e)
-      : (outputValue.innerHTML += e);
+  } else if (e === "=") {
+    outputValue.innerHTML = "= " + result;
+  } else {
+    if (
+      operators.includes(expression[expression.length - 1]) &&
+      expression[expression.length - 1] === e
+    ) {
+      return (outputValue.innerHTML = "error");
+    }
+    exp += e;
+    // operators.includes(e) ? expression.push(e) : expression.push(parseFloat(e));
+    // expression.push(e);
+    if (
+      !operators.includes(e) &&
+      expression.length > 0 &&
+      !operators.includes(expression[expression.length - 1])
+    ) {
+      expression[expression.length - 1] += e;
+    } else {
+      expression.push(e);
+    }
+    if (!operators.includes(expression[expression.length - 1])) {
+      result = infixToPostfix(expression);
+      console.log(expression);
+      console.log(`result -> ${result}`);
+      outputValue.innerHTML = "= " + result;
+    }
   }
+
+  handleShowExp();
 };
