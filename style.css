@@ -150,6 +150,10 @@
 }
 
 @media (max-width: 420px) {
+  .container {
+    height: 85vh;
+  }
+
   .output > textarea {
     width: 17.2rem;
   }
